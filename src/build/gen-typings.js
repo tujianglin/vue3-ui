@@ -1,3 +1,8 @@
+/**
+ * @description 打包复制黏贴类型文件
+ * @author 涂江林
+ */
+
 const path = require('path');
 const fs = require('fs');
 const { error } = require('console');

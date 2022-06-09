@@ -1,14 +1,18 @@
-/* eslint-disable */
-const fs = require("fs/promises");
-const Path = require("path");
-const fg = require("fast-glob");
+/**
+ * @description 构建打包组件声明路径
+ * @author 涂江林
+ */
 
-const indexPath = Path.resolve(__dirname, "../../dist/index.d.ts");
+const fs = require('fs/promises');
+const Path = require('path');
+const fg = require('fast-glob');
 
-const forEachComponents = path => {
+const indexPath = Path.resolve(__dirname, '../../dist/index.d.ts');
+
+const forEachComponents = (path) => {
   const components = fg.sync(path, { extglob: true });
-  return components.map(componentPath => {
-    const insertKey = componentPath.match("[^/]+(?!.*/)")[0].replace(/\.[^.]*$/, "");
+  return components.map((componentPath) => {
+    const insertKey = componentPath.match('[^/]+(?!.*/)')[0].replace(/\.[^.]*$/, '');
     return `${insertKey}: typeof import("./src/components/index")["${insertKey}"];`;
   });
 };
