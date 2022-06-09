@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <TButton name="1" />
+    <TButton />
   </div>
 </template>
 <script lang="tsx" setup></script>

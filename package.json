@@ -15,9 +15,9 @@
     "bootstrap": "pnpm install",
     "dev": "vite",
     "docs:dev": "vitepress dev docs",
-    "docs:build": "vitepress build docs",
+    "docs:build": "rimraf docs/guide/changelog.md && pnpm log && vitepress build docs",
     "docs:serve": "vitepress serve docs",
-    "build": "pnpm clean:dist && pnpm gen:components && vue-tsc --emitDeclarationOnly && vite build && pnpm gen:types && pnpm gen:type && pnpm clean:typings",
+    "build": "pnpm clean:dist && pnpm gen:components && vue-tsc --emitDeclarationOnly && vite build && pnpm gen:typings && pnpm gen:type && pnpm clean:typings",
     "preview": "vite preview",
     "lint:eslint": "eslint --cache --max-warnings 0  \"{src,mock}/**/*.{vue,ts,tsx}\" --fix",
     "lint:prettier": "prettier --write  \"src/**/*.{js,json,tsx,css,less,scss,vue,html,md}\"",
@@ -29,10 +29,10 @@
     "reinstall": "rimraf pnpm-lock.yaml && rimraf package.lock.json && rimraf node_modules && npm run bootstrap",
     "prepare": "husky install",
     "lint:lint-staged": "lint-staged",
-    "log": "conventional-changelog -p angular -i CHANGELOG.md -s",
+    "log": "conventional-changelog -p angular -i docs/guide/changelog.md -s",
     "gen:components": "node src/build/gen-components.js",
     "gen:type": "node src/build/gen-type.js",
-    "gen:types": "node src/build/gen-types.js"
+    "gen:typings": "node src/build/gen-typings.js"
   },
   "dependencies": {
     "ant-design-vue": "^3.2.5",
