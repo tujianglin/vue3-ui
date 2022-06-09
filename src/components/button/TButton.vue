@@ -13,6 +13,7 @@
   import { Button } from 'ant-design-vue';
   defineProps<{
     name: string;
+    title: number;
   }>();
 </script>
 <style lang="less" scoped></style>

@@ -14,6 +14,6 @@ git add -A
 git commit -m 'deploy'
 
 # 如果发布到 https://<USERNAME>.github.io/<REPO>
-git push -f git@github.com:tujianglin/tjl-ui.git dev
+git push -f https://github.com/tujianglin/tjl-ui.git gh-pages
 
 cd -

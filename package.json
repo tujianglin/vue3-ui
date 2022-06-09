@@ -34,7 +34,8 @@
     "gen:components": "node src/build/gen-components.js",
     "gen:type": "node src/build/gen-type.js",
     "gen:typings": "node src/build/gen-typings.js",
-    "gen:index": "node src/build/gen-index.js"
+    "gen:index": "node src/build/gen-index.js",
+    "deploy": "bash deploy.sh"
   },
   "dependencies": {
     "ant-design-vue": "^3.2.5",
