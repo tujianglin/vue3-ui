@@ -36,7 +36,7 @@ specifiers:
   stylelint-config-recommended-vue: ^1.4.0
   stylelint-config-standard: ^25.0.0
   stylelint-order: ^5.0.0
-  tjl-ui: 0.1.2
+  tjl-ui: 0.1.5
   typescript: ^4.5.4
   vite: ^2.9.9
   vite-plugin-dts: ^1.2.0
@@ -50,7 +50,7 @@ specifiers:
 
 dependencies:
   ant-design-vue: 3.2.5_vue@3.2.36
-  tjl-ui: 0.1.2_8558271453428b6e3d169d106ae11d4c
+  tjl-ui: 0.1.5_8558271453428b6e3d169d106ae11d4c
   vite-plugin-vitepress-demo: 1.1.5
   vitepress: 1.0.0-alpha.1_8558271453428b6e3d169d106ae11d4c
   vue: 3.2.36
@@ -4670,6 +4670,24 @@ packages:
     dependencies:
       ant-design-vue: 3.2.5_vue@3.2.36
       tjl-ui: 0.1.1_8558271453428b6e3d169d106ae11d4c
+      vite-plugin-vitepress-demo: 1.1.5
+      vitepress: 1.0.0-alpha.1_8558271453428b6e3d169d106ae11d4c
+      vue: 3.2.36
+    transitivePeerDependencies:
+      - '@types/react'
+      - '@vue/composition-api'
+      - less
+      - react
+      - react-dom
+      - sass
+      - stylus
+    dev: false
+
+  /tjl-ui/0.1.5_8558271453428b6e3d169d106ae11d4c:
+    resolution: {integrity: sha512-/KE36lO3bxQTlnAGG4WLR5DBHDDa0JES7lq3CEBNV9XEg4NHbw14aV6FfV0ZNNhgoLqejrFYl/oTWdUG7LFTzA==}
+    dependencies:
+      ant-design-vue: 3.2.5_vue@3.2.36
+      tjl-ui: 0.1.2_8558271453428b6e3d169d106ae11d4c
       vite-plugin-vitepress-demo: 1.1.5
       vitepress: 1.0.0-alpha.1_8558271453428b6e3d169d106ae11d4c
       vue: 3.2.36
