@@ -12,7 +12,7 @@
 <script lang="tsx" setup>
   import { Button } from 'ant-design-vue';
   defineProps<{
-    name: string;
+    name?: string;
   }>();
 </script>
 <style lang="less" scoped></style>

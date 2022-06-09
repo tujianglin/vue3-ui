@@ -23,7 +23,7 @@ const forEachComponents = path => {
         break;
       }
       case ".less": {
-        styleList.push(`import "${insertPath}";`);
+        styleList.push(`import '${insertPath}';`);
         break;
       }
       default:
