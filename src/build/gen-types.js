@@ -2,7 +2,7 @@ const path = require('path');
 const fs = require('fs');
 const { error } = require('console');
 
-const sourceDir = path.join(__dirname, '../../types');
+const sourceDir = path.join(__dirname, '../../typings');
 const targetDir = path.join(__dirname, '../../dist/src');
 
 const copy = (sd, td) => {

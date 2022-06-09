@@ -20,8 +20,8 @@
     "allowJs": true,
     "removeComments": true,
     "declaration": true,
-    "outDir": "types",
-    "types": ["vite/client", "tjl-ui"],
+    "outDir": "typings",
+    "types": ["vite/client"],
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"]
