@@ -2,7 +2,9 @@
 
 该组件库公司内部使用
 
-::: info 使用之前要了解 vue3 和 ant-design-vue :::
+::: info 使用之前
+要了解 vue3 和 ant-design-vue 
+:::
 
 ## 安装组件
 
