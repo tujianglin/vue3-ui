@@ -7,7 +7,6 @@ const Path = require('path');
 const fg = require('fast-glob');
 
 const componentList = [];
-const styleList = [];
 
 const forEachComponents = (path) => {
   const components = fg.sync(path, { extglob: true });
@@ -23,24 +22,17 @@ const forEachComponents = (path) => {
         componentList.push(`export { default as ${insertKey} } from '${insertPath}';`);
         break;
       }
-      case '.less': {
-        styleList.push(`import '${insertPath}';`);
-        break;
-      }
       default:
         return;
     }
   });
 };
 
-const path = `src/components/**/*.(vue|less)`;
+const path = `src/components/**/*.(vue)`;
 forEachComponents(path);
 
 const template = `/** generate all export here */
 ${componentList.join('\n')}
-
-/** generate Component style here */
-${styleList.join('\n')}
 `;
 
 fs.writeFileSync(Path.resolve(__dirname, '../components/index.ts'), template);

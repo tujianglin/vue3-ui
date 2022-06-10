@@ -1,7 +1,6 @@
 <template>
   <div>
-    <button>{{ name }}</button>
-    <Button>{{ name }}</Button>
+    <Button type="primary">{{ name }}</Button>
   </div>
 </template>
 <script lang="tsx">
@@ -13,7 +12,6 @@
   import { Button } from 'ant-design-vue';
   defineProps<{
     name: string;
-    title: number;
   }>();
 </script>
 <style lang="less" scoped></style>
