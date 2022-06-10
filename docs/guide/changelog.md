@@ -9,6 +9,7 @@
 * 打包 ([b5dffd1](https://github.com/tujianglin/tjl-ui/commit/b5dffd14f224505da7db05067b261428ab0ad51e))
 * 打包优化 ([75d21a9](https://github.com/tujianglin/tjl-ui/commit/75d21a98ba3f3b100b424093c1d1e66815c7f994))
 * 打包优化 ([10e60d2](https://github.com/tujianglin/tjl-ui/commit/10e60d233377c0dd000d2466bb64149e17909826))
+* 动态主题文档 ([7248e20](https://github.com/tujianglin/tjl-ui/commit/7248e20612f085ec39c4b1ec25b6e851acb29d3a))
 * 接入 antv 主题变量 ([a9b97aa](https://github.com/tujianglin/tjl-ui/commit/a9b97aa4315ebd2a1536d249134776b43aba3762))
 * 静态文档 ([4998604](https://github.com/tujianglin/tjl-ui/commit/49986040cdc4025569a5699158b10e50830850ca))
 * 快速上手, 更新日志 ([c01de49](https://github.com/tujianglin/tjl-ui/commit/c01de4946e84c53584e3b501a3a6533bbdb528b6))
