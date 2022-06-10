@@ -4,6 +4,7 @@ export default {
       text: '介绍',
       items: [
         { text: '快速上手', link: '/guide/getting-started' },
+        { text: '动态主题', link: '/guide/customize-theme-variable' },
         { text: '更新日志', link: '/guide/changelog' },
       ],
     },
