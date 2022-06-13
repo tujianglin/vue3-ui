@@ -73,10 +73,10 @@
           return (
             <div class="flex">
               <div title={data[title]} class="tree-content">
-                {titleIcon && titleIcon()}
-                {beforeTag && beforeTag()}
+                {titleIcon && titleIcon({ data })}
+                {beforeTag && beforeTag({ data })}
                 {data[title]}
-                {AfterTag && AfterTag()}
+                {AfterTag && AfterTag({ data })}
               </div>
               {props.menu && data.showMenu && (
                 <div class="operate">
