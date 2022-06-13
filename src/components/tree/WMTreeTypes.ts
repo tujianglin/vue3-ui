@@ -1,11 +1,12 @@
 import type { ExtractPropTypes, PropType } from 'vue';
-import type { TreeDataItem } from 'ant-design-vue/lib/tree';
+import type { TreeDataItem, TreeProps } from 'ant-design-vue/lib/tree';
 
 export const treeEmits = [
   'update:expandedKeys',
   'update:selectedKeys',
   'update:checkedKeys',
   'check',
+  'expand',
 ];
 
 export interface IMenuBtn {
@@ -24,9 +25,9 @@ export interface FieldNames {
 }
 
 export interface TreeState {
-  expandedKeys: KeyType[];
-  selectedKeys: KeyType[];
-  checkedKeys: CheckKeys;
+  expandedKeys: TreeProps['expandedKeys'];
+  selectedKeys: TreeProps['selectedKeys'];
+  checkedKeys: TreeProps['checkedKeys'];
 }
 
 export type KeyType = string | number;
@@ -74,6 +75,6 @@ export const wmTreeProps = () => ({
   },
 });
 
-export type WMTreeProps = Partial<ExtractPropTypes<ReturnType<typeof wmTreeProps>>>;
+export type WMTreeProps = TreeProps & Partial<ExtractPropTypes<ReturnType<typeof wmTreeProps>>>;
 
 export default wmTreeProps;

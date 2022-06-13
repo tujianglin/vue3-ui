@@ -1,20 +1,19 @@
 <script lang="tsx">
   import { Tree } from 'ant-design-vue';
-  import { computed, defineComponent, reactive, ref, toRaw, unref, watchEffect } from 'vue';
-  import { cloneDeep, omit } from 'lodash-es';
+  import { computed, defineComponent, ref, toRaw, unref, watchEffect } from 'vue';
+  import { cloneDeep, difference, omit } from 'lodash-es';
   import { initDefaultProps } from '@/utils';
-  import wmTreeProps, { treeEmits, TreeState, KeyType, FieldNames, TreeItem } from './WMTreeTypes';
+  import wmTreeProps, { treeEmits, FieldNames, TreeItem } from './WMTreeTypes';
+  import type { TreeProps } from 'ant-design-vue';
 
   export default defineComponent({
     name: 'WMTree',
     props: initDefaultProps(wmTreeProps(), {}),
     emits: treeEmits,
     setup(props, { attrs, emit }) {
-      const state = reactive<TreeState>({
-        expandedKeys: props.expandedKeys,
-        selectedKeys: props.selectedKeys,
-        checkedKeys: props.checkedKeys,
-      });
+      const expandedKeys = ref(props.expandedKeys);
+      const selectedKeys = ref(props.selectedKeys);
+      const checkedKeys = ref(props.checkedKeys);
       const treeDataRef = ref<TreeItem[]>([]);
       const getFieldNames = computed((): Required<FieldNames> => {
         const { fieldNames } = props;
@@ -26,27 +25,48 @@
         };
       });
       const getBindValues = computed(() => {
-        let propsData = {
+        let propsData: TreeProps = {
           blockNode: true,
           ...attrs,
           ...props,
-          expandedKeys: state.expandedKeys,
-          selectedKeys: state.selectedKeys,
-          checkedKeys: state.checkedKeys,
+          expandedKeys: expandedKeys.value,
+          selectedKeys: selectedKeys.value,
+          checkedKeys: checkedKeys.value,
           fieldNames: unref(getFieldNames),
-          'onUpdate:expandedKeys': (v: KeyType[]) => {
-            state.expandedKeys = v;
+          'onUpdate:expandedKeys': (v) => {
+            expandedKeys.value = v;
             emit('update:expandedKeys', v);
           },
-          'onUpdate:selectedKeys': (v: KeyType[]) => {
-            state.selectedKeys = v;
+          'onUpdate:selectedKeys': (v) => {
+            selectedKeys.value = v;
             emit('update:selectedKeys', v);
           },
-          onCheck: (v: any, e: any) => {
-            state.checkedKeys = v;
-            const rawVal = toRaw(state.checkedKeys);
+          'onUpdate:checkedKeys': (v) => {
+            checkedKeys.value = v;
+            emit('update:checkedKeys', v);
+          },
+          onCheck: (v, e) => {
+            checkedKeys.value = v;
+            const rawVal = toRaw(checkedKeys.value);
             emit('update:checkedKeys', rawVal);
             emit('check', rawVal, e);
+          },
+          onExpand: (keys, { expanded, node }) => {
+            if (props.accordion) {
+              // node.parent add from 3.0.0-alpha.10
+              const tempKeys = ((node.parent ? node.parent.children : treeData.value) || []).map(
+                ({ key }) => key,
+              );
+              if (expanded) {
+                expandedKeys.value = difference(keys, tempKeys).concat(node.key);
+              } else {
+                expandedKeys.value = keys;
+              }
+              emit('expand', expandedKeys.value, { expanded, node });
+            } else {
+              expandedKeys.value = keys;
+              emit('expand', expandedKeys.value, { expanded, node });
+            }
           },
         };
         return omit(propsData, 'treeData', 'class');
@@ -58,20 +78,11 @@
         const data = cloneDeep(getTreeData.value);
         return data;
       });
+
       watchEffect(() => {
         treeDataRef.value = props.treeData as TreeItem[];
       });
-      watchEffect(() => {
-        state.expandedKeys = props.expandedKeys;
-      });
 
-      watchEffect(() => {
-        state.selectedKeys = props.selectedKeys;
-      });
-
-      watchEffect(() => {
-        state.checkedKeys = props.checkedKeys;
-      });
       return () => (
         <Tree {...unref(getBindValues)} showIcon={false} treeData={treeData.value}></Tree>
       );
