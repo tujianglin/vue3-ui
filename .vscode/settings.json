@@ -138,6 +138,8 @@
     "postcss",
     "demoblock",
     "extglob",
-    "VueTypeValidableDef"
+    "VueTypeValidableDef",
+    "windicss",
+    "akar"
   ]
 }

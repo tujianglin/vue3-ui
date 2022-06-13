@@ -22,18 +22,26 @@ const forEachComponents = (path) => {
         componentList.push(`export { default as ${insertKey} } from '${insertPath}';`);
         break;
       }
+      case '.ts': {
+        if (componentPath !== 'src/components/index.ts') {
+          const tsProps = insertKey.replace('Types', 'Props');
+          const tsPath = insertPath.replace('.ts', '');
+          componentList.push(`export type { ${tsProps} } from '${tsPath}';`);
+        }
+        break;
+      }
       default:
         return;
     }
   });
 };
 
-const path = `src/components/**/*.(vue)`;
+const path = `src/components/**/*.(vue|ts)`;
 forEachComponents(path);
 
 const template = `/** generate all export here */
-${componentList.join('\n')}
-`;
+ ${componentList.join('\n')}
+ `;
 
 fs.writeFileSync(Path.resolve(__dirname, '../components/index.ts'), template);
 
