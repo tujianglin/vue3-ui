@@ -1,25 +1,60 @@
 import type { ExtractPropTypes, PropType } from 'vue';
-import type { TreeProps } from 'ant-design-vue';
+import type { TreeDataItem } from 'ant-design-vue/lib/tree';
+
+export const treeEmits = [
+  'update:expandedKeys',
+  'update:selectedKeys',
+  'update:checkedKeys',
+  'check',
+];
 
 export interface IMenuBtn {
   key: 'ADD' | 'EDIT' | 'DELETE';
   value: string;
 }
 
+export interface TreeItem extends TreeDataItem {
+  icon?: any;
+}
+
+export interface FieldNames {
+  children?: string;
+  title?: string;
+  key?: string;
+}
+
+export interface TreeState {
+  expandedKeys: KeyType[];
+  selectedKeys: KeyType[];
+  checkedKeys: CheckKeys;
+}
+
+export type KeyType = string | number;
+
+export type CheckKeys =
+  | KeyType[]
+  | { checked: string[] | number[]; halfChecked: string[] | number[] };
+
 type onMenuClick = (key: any) => void;
 
 export const wmTreeProps = () => ({
   selectedKeys: {
-    type: Array as PropType<TreeProps['selectedKeys']>,
+    type: Array as PropType<TreeState['selectedKeys']>,
+    default: () => [],
   },
   checkedKeys: {
-    type: Array as PropType<TreeProps['checkedKeys']>,
+    type: Array as PropType<TreeState['checkedKeys']>,
+    default: () => [],
   },
   expandedKeys: {
-    type: Array as PropType<TreeProps['expandedKeys']>,
+    type: Array as PropType<TreeState['expandedKeys']>,
+    default: () => [],
   },
-  option: {
-    type: Object as PropType<TreeProps>,
+  treeData: {
+    type: Array as PropType<TreeDataItem[]>,
+  },
+  fieldNames: {
+    type: Object as PropType<FieldNames>,
   },
   /** 是否开启手风琴 */
   accordion: {
@@ -32,39 +67,6 @@ export const wmTreeProps = () => ({
   /** 操作按钮 */
   menuBtn: {
     type: Array as PropType<IMenuBtn[]>,
-  },
-  onExpand: {
-    type: Function as PropType<TreeProps['onExpand']>,
-  },
-  onCheck: {
-    type: Function as PropType<TreeProps['onCheck']>,
-  },
-  onDragend: {
-    type: Function as PropType<TreeProps['onDragend']>,
-  },
-  onDragenter: {
-    type: Function as PropType<TreeProps['onDragenter']>,
-  },
-  onDragleave: {
-    type: Function as PropType<TreeProps['onDragleave']>,
-  },
-  onDragover: {
-    type: Function as PropType<TreeProps['onDragover']>,
-  },
-  onDragstart: {
-    type: Function as PropType<TreeProps['onDragstart']>,
-  },
-  onDrop: {
-    type: Function as PropType<TreeProps['onDrop']>,
-  },
-  onLoad: {
-    type: Function as PropType<TreeProps['onLoad']>,
-  },
-  onRightClick: {
-    type: Function as PropType<TreeProps['onRightClick']>,
-  },
-  onSelect: {
-    type: Function as PropType<TreeProps['onSelect']>,
   },
   /** 树操作事件 */
   onMenuClick: {

@@ -140,6 +140,7 @@
     "extglob",
     "VueTypeValidableDef",
     "windicss",
-    "akar"
+    "akar",
+    "unref"
   ]
 }
