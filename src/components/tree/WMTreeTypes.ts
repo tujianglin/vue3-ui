@@ -6,6 +6,8 @@ export interface IMenuBtn {
   value: string;
 }
 
+type onMenuClick = (key: any) => void;
+
 export const wmTreeProps = () => ({
   selectedKeys: {
     type: Array as PropType<TreeProps['selectedKeys']>,
@@ -19,18 +21,17 @@ export const wmTreeProps = () => ({
   option: {
     type: Object as PropType<TreeProps>,
   },
+  /** 是否开启手风琴 */
   accordion: {
     type: Boolean,
   },
+  /** 是否开启操作按钮 */
   menu: {
     type: Boolean,
   },
+  /** 操作按钮 */
   menuBtn: {
     type: Array as PropType<IMenuBtn[]>,
-  },
-  maxLength: {
-    type: [String, Number],
-    default: 100,
   },
   onExpand: {
     type: Function as PropType<TreeProps['onExpand']>,
@@ -64,6 +65,10 @@ export const wmTreeProps = () => ({
   },
   onSelect: {
     type: Function as PropType<TreeProps['onSelect']>,
+  },
+  /** 树操作事件 */
+  onMenuClick: {
+    type: Function as PropType<onMenuClick>,
   },
 });
 

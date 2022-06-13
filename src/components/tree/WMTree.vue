@@ -26,6 +26,7 @@
       'load',
       'rightClick',
       'select',
+      'menuClick',
     ],
     setup(props, { slots, emit }) {
       const { titleIcon, beforeTag, AfterTag } = slots;
@@ -63,11 +64,12 @@
         }
       };
       const handleMenuClick: MenuProps['onClick'] = ({ key }) => {
-        console.log(key);
+        emit('menuClick', key);
       };
       const treeSlots = {
         title: (data) => {
           const { title } = fieldNames;
+          data.showMenu = data.showMenu === false ? false : true;
           return (
             <div class="flex">
               <div title={data[title]} class="tree-content">
@@ -76,24 +78,27 @@
                 {data[title]}
                 {AfterTag && AfterTag()}
               </div>
-              <div class="operate">
-                <Dropdown
-                  v-slots={{
-                    default: () => (
-                      <span>
-                        <Icon icon="akar-icons:more-vertical"></Icon>
-                      </span>
-                    ),
-                    overlay: () => (
-                      <Menu onClick={handleMenuClick}>
-                        {menuBtn.value?.map((i) => (
-                          <Menu.Item key={i.key}>{i.value}</Menu.Item>
-                        ))}
-                      </Menu>
-                    ),
-                  }}
-                ></Dropdown>
-              </div>
+              {props.menu && data.showMenu && (
+                <div class="operate">
+                  <Dropdown
+                    trigger={['click']}
+                    v-slots={{
+                      default: () => (
+                        <span>
+                          <Icon icon="akar-icons:more-vertical"></Icon>
+                        </span>
+                      ),
+                      overlay: () => (
+                        <Menu onClick={handleMenuClick}>
+                          {menuBtn.value?.map((i) => (
+                            <Menu.Item key={i.key}>{i.value}</Menu.Item>
+                          ))}
+                        </Menu>
+                      ),
+                    }}
+                  ></Dropdown>
+                </div>
+              )}
             </div>
           );
         },
