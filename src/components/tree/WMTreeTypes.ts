@@ -1,5 +1,6 @@
 import type { ExtractPropTypes, PropType } from 'vue';
 import type { TreeDataItem, TreeProps } from 'ant-design-vue/lib/tree';
+import type { EmptyProps } from 'ant-design-vue';
 
 export const treeEmits = [
   'update:expandedKeys',
@@ -10,7 +11,7 @@ export const treeEmits = [
 ];
 
 export interface IMenuBtn {
-  key: 'ADD' | 'EDIT' | 'DELETE';
+  key: string;
   value: string;
 }
 
@@ -24,38 +25,35 @@ export interface FieldNames {
   key?: string;
 }
 
-export interface TreeState {
-  expandedKeys: TreeProps['expandedKeys'];
-  selectedKeys: TreeProps['selectedKeys'];
-  checkedKeys: TreeProps['checkedKeys'];
-}
-
-export type KeyType = string | number;
-
-export type CheckKeys =
-  | KeyType[]
-  | { checked: string[] | number[]; halfChecked: string[] | number[] };
-
 type onMenuClick = (key: any) => void;
 
 export const wmTreeProps = () => ({
   selectedKeys: {
-    type: Array as PropType<TreeState['selectedKeys']>,
+    type: Array as PropType<TreeProps['selectedKeys']>,
     default: () => [],
   },
   checkedKeys: {
-    type: Array as PropType<TreeState['checkedKeys']>,
+    type: Array as PropType<TreeProps['checkedKeys']>,
     default: () => [],
   },
   expandedKeys: {
-    type: Array as PropType<TreeState['expandedKeys']>,
+    type: Array as PropType<TreeProps['expandedKeys']>,
     default: () => [],
   },
   treeData: {
     type: Array as PropType<TreeDataItem[]>,
+    default: () => [],
   },
   fieldNames: {
     type: Object as PropType<FieldNames>,
+  },
+  /** 加载中 */
+  loading: {
+    type: Boolean,
+  },
+  /** 缺省图路径 */
+  emptyImage: {
+    type: Object as PropType<EmptyProps['image']>,
   },
   /** 是否开启手风琴 */
   accordion: {

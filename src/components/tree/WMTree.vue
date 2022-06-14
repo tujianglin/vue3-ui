@@ -1,91 +1,158 @@
 <script lang="tsx">
-  import { Tree } from 'ant-design-vue';
-  import { computed, defineComponent, ref, toRaw, unref, watchEffect } from 'vue';
-  import { cloneDeep, difference, omit } from 'lodash-es';
+  import { computed, defineComponent, reactive, toRaw, unref } from 'vue';
+  import type { TreeProps, MenuProps } from 'ant-design-vue';
+  import { Tree, Spin, Empty, Dropdown, Menu } from 'ant-design-vue';
+  import { difference, omit } from 'lodash-es';
+  import wmTreeProps, { treeEmits } from './WMTreeTypes';
   import { initDefaultProps } from '@/utils';
-  import wmTreeProps, { treeEmits, FieldNames, TreeItem } from './WMTreeTypes';
-  import type { TreeProps } from 'ant-design-vue';
+  import { TreeDataItem } from 'ant-design-vue/lib/tree';
+  import { Icon } from '@iconify/vue';
 
   export default defineComponent({
     name: 'WMTree',
     props: initDefaultProps(wmTreeProps(), {}),
     emits: treeEmits,
-    setup(props, { attrs, emit }) {
-      const expandedKeys = ref(props.expandedKeys);
-      const selectedKeys = ref(props.selectedKeys);
-      const checkedKeys = ref(props.checkedKeys);
-      const treeDataRef = ref<TreeItem[]>([]);
-      const getFieldNames = computed((): Required<FieldNames> => {
-        const { fieldNames } = props;
+    setup(props, { attrs, emit, slots }) {
+      const state = reactive({
+        expandedKeys: props.expandedKeys,
+        selectedKeys: props.selectedKeys,
+        checkedKeys: props.checkedKeys,
+      });
+
+      const treeData = computed(() => {
+        return props.treeData;
+      });
+
+      const getFieldNames = computed(() => {
         return {
           children: 'children',
           title: 'title',
           key: 'key',
-          ...fieldNames,
+          ...props.fieldNames,
         };
       });
+      const getNotFound = computed((): boolean => {
+        return !treeData.value || treeData.value.length === 0;
+      });
       const getBindValues = computed(() => {
-        let propsData: TreeProps = {
+        const propsData: TreeProps = {
           blockNode: true,
           ...attrs,
           ...props,
-          expandedKeys: expandedKeys.value,
-          selectedKeys: selectedKeys.value,
-          checkedKeys: checkedKeys.value,
-          fieldNames: unref(getFieldNames),
+          expandedKeys: state.expandedKeys,
+          selectedKeys: state.selectedKeys,
+          checkedKeys: state.checkedKeys,
           'onUpdate:expandedKeys': (v) => {
-            expandedKeys.value = v;
+            state.expandedKeys = v;
             emit('update:expandedKeys', v);
           },
           'onUpdate:selectedKeys': (v) => {
-            selectedKeys.value = v;
+            state.selectedKeys = v;
             emit('update:selectedKeys', v);
           },
-          'onUpdate:checkedKeys': (v) => {
-            checkedKeys.value = v;
-            emit('update:checkedKeys', v);
-          },
           onCheck: (v, e) => {
-            checkedKeys.value = v;
-            const rawVal = toRaw(checkedKeys.value);
+            state.checkedKeys = v;
+            const rawVal = toRaw(state.checkedKeys);
             emit('update:checkedKeys', rawVal);
             emit('check', rawVal, e);
           },
           onExpand: (keys, { expanded, node }) => {
             if (props.accordion) {
-              // node.parent add from 3.0.0-alpha.10
               const tempKeys = ((node.parent ? node.parent.children : treeData.value) || []).map(
                 ({ key }) => key,
               );
               if (expanded) {
-                expandedKeys.value = difference(keys, tempKeys).concat(node.key);
+                state.expandedKeys = difference(keys, tempKeys).concat(node.key);
               } else {
-                expandedKeys.value = keys;
+                state.expandedKeys = keys;
               }
-              emit('expand', expandedKeys.value, { expanded, node });
-            } else {
-              expandedKeys.value = keys;
-              emit('expand', expandedKeys.value, { expanded, node });
             }
+            emit('expand', state.expandedKeys, { expanded, node });
           },
         };
         return omit(propsData, 'treeData', 'class');
       });
 
-      const getTreeData = computed((): TreeItem[] => unref(treeDataRef));
+      const renderTitle = (item: TreeDataItem) => {
+        const { title } = unref(getFieldNames);
+        item.showMenu = item.showMenu === false ? false : true;
+        return (
+          <div class="tree-title">
+            <div title={item[title]} class="title">
+              {slots.icon && slots.icon({ item })}
+              {slots.beforeTitle && slots.beforeTitle({ item })}
+              {item[title]}
+              {slots.afterTitle && slots.afterTitle({ item })}
+            </div>
+            {props.menu && item.showMenu && (
+              <div class="actions">
+                <Dropdown
+                  trigger={['click']}
+                  v-slots={{
+                    default: () => (
+                      <span>
+                        <Icon icon="akar-icons:more-vertical"></Icon>
+                      </span>
+                    ),
+                    overlay: () => (
+                      <Menu onClick={handleMenuClick}>
+                        {props.menuBtn?.map((i) => (
+                          <Menu.Item key={i.key}>{i.value}</Menu.Item>
+                        ))}
+                      </Menu>
+                    ),
+                  }}
+                ></Dropdown>
+              </div>
+            )}
+          </div>
+        );
+      };
 
-      const treeData = computed(() => {
-        const data = cloneDeep(getTreeData.value);
-        return data;
-      });
-
-      watchEffect(() => {
-        treeDataRef.value = props.treeData as TreeItem[];
-      });
+      const handleMenuClick: MenuProps['onClick'] = ({ key }) => {
+        emit('menuClick', key);
+      };
 
       return () => (
-        <Tree {...unref(getBindValues)} showIcon={false} treeData={treeData.value}></Tree>
+        <Spin spinning={props.loading}>
+          <div v-show={!unref(getNotFound)}>
+            <Tree
+              {...unref(getBindValues)}
+              treeData={treeData.value}
+              v-slots={{
+                title: (item: TreeDataItem) => renderTitle(item),
+              }}
+            ></Tree>
+          </div>
+          <Empty v-show={unref(getNotFound)} image={props.emptyImage}></Empty>
+        </Spin>
       );
     },
   });
 </script>
+
+<style lang="less" scoped>
+  .tree-title {
+    display: flex;
+    align-items: center;
+    position: relative;
+
+    .title {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .actions {
+      position: absolute;
+      right: 0;
+      top: 56%;
+      transform: translateY(-50%);
+      display: none;
+    }
+  }
+
+  .tree-title:hover .actions {
+    display: block;
+  }
+</style>
