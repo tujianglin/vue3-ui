@@ -1,3 +1,4 @@
 import initDefaultProps from './initDefaultProps';
+import { useTree } from './treeHelper';
 
-export { initDefaultProps };
+export { initDefaultProps, useTree };

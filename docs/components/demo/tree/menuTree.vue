@@ -4,7 +4,13 @@
       menu:
       <Switch v-model:checked="menu" />
     </div>
-    <WMTree :option="option" :menu="menu" :menu-btn="menuBtn" @menu-click="onMenuClick" />
+    <WMTree
+      :tree-data="treeData"
+      :menu="menu"
+      :menu-btn="menuBtn"
+      @menu-click="onMenuClick"
+      :defaultExpandAll="true"
+    />
   </div>
 </template>
 <script lang="tsx" setup>
@@ -67,9 +73,4 @@
         break;
     }
   };
-
-  const option = ref<WMTreeProps['option']>({
-    treeData,
-    defaultExpandAll: true,
-  });
 </script>

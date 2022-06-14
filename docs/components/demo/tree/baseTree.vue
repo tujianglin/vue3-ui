@@ -4,13 +4,13 @@
       v-model:expandedKeys="expandedKeys"
       v-model:selectedKeys="selectedKeys"
       v-model:checkedKeys="checkedKeys"
-      :option="option"
+      checkable
+      :tree-data="treeData"
     />
   </div>
 </template>
 <script lang="tsx" setup>
   import { ref, watch } from 'vue';
-  import type { WMTreeProps } from 'tjl-ui';
   import type { TreeProps } from 'ant-design-vue';
 
   const expandedKeys = ref<string[]>(['0-0-0', '0-0-1']);
@@ -49,9 +49,4 @@
       ],
     },
   ];
-
-  const option = ref<WMTreeProps['option']>({
-    treeData,
-    checkable: true,
-  });
 </script>

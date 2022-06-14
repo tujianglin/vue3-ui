@@ -47,6 +47,8 @@ export const wmTreeProps = () => ({
   fieldNames: {
     type: Object as PropType<FieldNames>,
   },
+  checkable: Boolean,
+  defaultExpandAll: Boolean,
   /** 加载中 */
   loading: {
     type: Boolean,

@@ -1,6 +1,6 @@
 {
   "name": "tjl-ui",
-  "version": "0.1.9",
+  "version": "0.1.12",
   "main": "./dist/ui.umd.js",
   "module": "./dist/ui.es.d.js",
   "types": "./dist/index.d.ts",
@@ -40,7 +40,7 @@
   "dependencies": {
     "@ant-design/icons-vue": "^6.1.0",
     "ant-design-vue": "^3.2.5",
-    "tjl-ui": "0.1.9",
+    "tjl-ui": "0.1.12",
     "vite-plugin-vitepress-demo": "^1.1.5",
     "vitepress": "^1.0.0-alpha.1",
     "vue": "^3.2.25"

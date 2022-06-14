@@ -1,10 +1,10 @@
 <script lang="tsx">
-  import { computed, defineComponent, reactive, toRaw, unref } from 'vue';
+  import { computed, defineComponent, onMounted, reactive, toRaw, unref } from 'vue';
   import type { TreeProps, MenuProps } from 'ant-design-vue';
   import { Tree, Spin, Empty, Dropdown, Menu } from 'ant-design-vue';
   import { difference, omit } from 'lodash-es';
   import wmTreeProps, { treeEmits } from './WMTreeTypes';
-  import { initDefaultProps } from '@/utils';
+  import { initDefaultProps, useTree } from '@/utils';
   import { TreeDataItem } from 'ant-design-vue/lib/tree';
   import { Icon } from '@iconify/vue';
 
@@ -112,6 +112,16 @@
       const handleMenuClick: MenuProps['onClick'] = ({ key }) => {
         emit('menuClick', key);
       };
+      function expandAll(expandAll: boolean) {
+        state.expandedKeys = expandAll ? getAllKeys() : ([] as KeyType[]);
+      }
+
+      const { getAllKeys } = useTree(treeData, getFieldNames.value);
+      onMounted(() => {
+        if (props.defaultExpandAll) {
+          expandAll(true);
+        }
+      });
 
       return () => (
         <Spin spinning={props.loading}>
@@ -122,6 +132,7 @@
               v-slots={{
                 title: (item: TreeDataItem) => renderTitle(item),
               }}
+              defaultExpandAll
             ></Tree>
           </div>
           <Empty v-show={unref(getNotFound)} image={props.emptyImage}></Empty>
