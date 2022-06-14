@@ -1,6 +1,6 @@
 {
   "name": "tjl-ui",
-  "version": "0.1.15",
+  "version": "0.1.16",
   "main": "./dist/ui.umd.js",
   "module": "./dist/ui.es.d.js",
   "types": "./dist/index.d.ts",
