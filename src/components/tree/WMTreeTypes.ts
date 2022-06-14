@@ -1,4 +1,4 @@
-import type { ExtractPropTypes, PropType } from 'vue';
+import type { ExtractPropTypes, PropType, VNode } from 'vue';
 import type { TreeDataItem, TreeProps } from 'ant-design-vue/lib/tree';
 import type { EmptyProps } from 'ant-design-vue';
 
@@ -12,17 +12,7 @@ export const treeEmits = [
 
 export interface IMenuBtn {
   key: string;
-  value: string;
-}
-
-export interface TreeItem extends TreeDataItem {
-  icon?: any;
-}
-
-export interface FieldNames {
-  children?: string;
-  title?: string;
-  key?: string;
+  value: string | VNode;
 }
 
 type onMenuClick = (key: any) => void;
@@ -45,7 +35,7 @@ export const wmTreeProps = () => ({
     default: () => [],
   },
   fieldNames: {
-    type: Object as PropType<FieldNames>,
+    type: Object as PropType<TreeProps['fieldNames']>,
   },
   checkable: Boolean,
   defaultExpandAll: Boolean,

@@ -1,15 +1,12 @@
 <template>
-  <div id="app">
-    <div style="margin-bottom: 16px">
-      accordion:
-      <Switch v-model:checked="accordion" />
-    </div>
-    <WMTree :option="option" :accordion="accordion" />
+  <div style="margin-bottom: 16px">
+    accordion:
+    <Switch v-model:checked="accordion" />
   </div>
+  <WMTree :treeData="treeData" :accordion="accordion" />
 </template>
 <script lang="tsx" setup>
   import { ref, watch } from 'vue';
-  import type { WMTreeProps } from 'tjl-ui';
   import { Switch } from 'ant-design-vue';
   import type { TreeProps } from 'ant-design-vue';
 
@@ -55,8 +52,4 @@
       ],
     },
   ];
-
-  const option = ref<WMTreeProps['option']>({
-    treeData,
-  });
 </script>

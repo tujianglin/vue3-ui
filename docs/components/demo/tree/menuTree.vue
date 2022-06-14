@@ -1,17 +1,15 @@
 <template>
-  <div id="app">
-    <div style="margin-bottom: 16px">
-      menu:
-      <Switch v-model:checked="menu" />
-    </div>
-    <WMTree
-      :tree-data="treeData"
-      :menu="menu"
-      :menu-btn="menuBtn"
-      @menu-click="onMenuClick"
-      :defaultExpandAll="true"
-    />
+  <div style="margin-bottom: 16px">
+    menu:
+    <Switch v-model:checked="menu" />
   </div>
+  <WMTree
+    :tree-data="treeData"
+    :menu="menu"
+    :menu-btn="menuBtn"
+    @menu-click="onMenuClick"
+    defaultExpandAll
+  />
 </template>
 <script lang="tsx" setup>
   import { ref } from 'vue';
@@ -29,6 +27,7 @@
         {
           title: 'parent 1-0',
           key: '0-0-0',
+          showMenu: false,
           children: [
             { title: 'leaf', key: '0-0-0-0' },
             { title: 'leaf', key: '0-0-0-1' },

@@ -79,10 +79,9 @@
         return (
           <div class="tree-title">
             <div title={item[title]} class="title">
-              {slots.icon && slots.icon({ item })}
-              {slots.beforeTitle && slots.beforeTitle({ item })}
+              {slots.before && slots.before({ item })}
               {item[title]}
-              {slots.afterTitle && slots.afterTitle({ item })}
+              {slots.after && slots.after({ item })}
             </div>
             {props.menu && item.showMenu && (
               <div class="actions">
@@ -97,7 +96,9 @@
                     overlay: () => (
                       <Menu onClick={handleMenuClick}>
                         {props.menuBtn?.map((i) => (
-                          <Menu.Item key={i.key}>{i.value}</Menu.Item>
+                          <Menu.Item key={i.key} item={item}>
+                            {i.value}
+                          </Menu.Item>
                         ))}
                       </Menu>
                     ),
@@ -109,8 +110,8 @@
         );
       };
 
-      const handleMenuClick: MenuProps['onClick'] = ({ key }) => {
-        emit('menuClick', key);
+      const handleMenuClick: MenuProps['onClick'] = ({ key, item }) => {
+        emit('menuClick', key, item.item.dataRef);
       };
       function expandAll(expandAll: boolean) {
         state.expandedKeys = expandAll ? getAllKeys() : ([] as KeyType[]);
@@ -157,7 +158,7 @@
     .actions {
       position: absolute;
       right: 0;
-      top: 56%;
+      top: 50%;
       transform: translateY(-50%);
       display: none;
     }

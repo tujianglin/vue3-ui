@@ -5,12 +5,20 @@
       :expanded-keys="expandedKeys"
       :tree-data="treeData"
       defaultExpandAll
+      menu
+      :menu-btn="menuBtn"
     />
   </div>
 </template>
 <script lang="tsx" setup>
   import { ref } from 'vue';
   import { WMTree } from '@/index';
+  const menuBtn = [
+    {
+      key: 'ADD',
+      value: <div>111</div>,
+    },
+  ];
   const treeData = ref([
     {
       title: 'parent 1',
