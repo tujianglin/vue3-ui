@@ -57,16 +57,16 @@
     },
   ]);
 
-  const onMenuClick = (key: any) => {
+  const onMenuClick = (key: any, item) => {
     switch (key) {
       case 'ADD':
-        console.log('ADD', key);
+        console.log('ADD', key, item);
         break;
       case 'EDIT':
-        console.log('EDIT', key);
+        console.log('EDIT', key, item);
         break;
       case 'DELETE':
-        console.log('DELETE', key);
+        console.log('DELETE', key, item);
         break;
       default:
         break;

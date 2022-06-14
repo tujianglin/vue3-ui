@@ -39,7 +39,7 @@ specifiers:
   stylelint-config-recommended-vue: ^1.4.0
   stylelint-config-standard: ^25.0.0
   stylelint-order: ^5.0.0
-  tjl-ui: 0.1.13
+  tjl-ui: 0.1.14
   typescript: ^4.5.4
   vite: ^2.9.9
   vite-plugin-dts: ^1.2.0
@@ -55,7 +55,7 @@ specifiers:
 dependencies:
   '@ant-design/icons-vue': 6.1.0_vue@3.2.37
   ant-design-vue: 3.2.7_vue@3.2.37
-  tjl-ui: 0.1.13_c55f1a5834544d0fcb25d3e72551b37f
+  tjl-ui: 0.1.14_c55f1a5834544d0fcb25d3e72551b37f
   vite-plugin-vitepress-demo: 1.1.5
   vitepress: 1.0.0-alpha.1_c55f1a5834544d0fcb25d3e72551b37f
   vue: 3.2.37
@@ -5098,6 +5098,25 @@ packages:
       '@ant-design/icons-vue': 6.1.0_vue@3.2.37
       ant-design-vue: 3.2.7_vue@3.2.37
       tjl-ui: 0.1.12_c55f1a5834544d0fcb25d3e72551b37f
+      vite-plugin-vitepress-demo: 1.1.5
+      vitepress: 1.0.0-alpha.1_c55f1a5834544d0fcb25d3e72551b37f
+      vue: 3.2.37
+    transitivePeerDependencies:
+      - '@types/react'
+      - '@vue/composition-api'
+      - less
+      - react
+      - react-dom
+      - sass
+      - stylus
+    dev: false
+
+  /tjl-ui/0.1.14_c55f1a5834544d0fcb25d3e72551b37f:
+    resolution: {integrity: sha512-AHwJGy1SzmSL6bTvpPQKhxgP/O4i7zNdhiCf7jgU7xjMxQFeo7umhEqmFGAaJmXw2WmUDU5y56lhTZl45fNwSA==}
+    dependencies:
+      '@ant-design/icons-vue': 6.1.0_vue@3.2.37
+      ant-design-vue: 3.2.7_vue@3.2.37
+      tjl-ui: 0.1.13_c55f1a5834544d0fcb25d3e72551b37f
       vite-plugin-vitepress-demo: 1.1.5
       vitepress: 1.0.0-alpha.1_c55f1a5834544d0fcb25d3e72551b37f
       vue: 3.2.37
