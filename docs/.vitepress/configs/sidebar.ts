@@ -12,7 +12,10 @@ export default {
   '/components/': [
     {
       text: '组件',
-      items: [{ text: 'Tree 树形控件', link: '/components/tree' }],
+      items: [
+        { text: 'Tree 树形控件', link: '/components/tree' },
+        { text: 'TagList 标签列表', link: '/components/tagList' },
+      ],
     },
   ],
 };

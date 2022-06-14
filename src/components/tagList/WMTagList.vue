@@ -101,10 +101,10 @@
                 type={activeTag.value === i ? 'default' : 'dashed'}
                 onClick={(e) => handleTag(e, v, i)}
                 v-slots={{
-                  icon: () => slots.icon && slots.icon(),
+                  icon: () => slots.icon && slots.icon({ v, i }),
                 }}
               >
-                <div class="title" style={[unref(tagWidth)]}>
+                <div class="tag-list-tag-title" style={[unref(tagWidth)]}>
                   {slots.title && slots.title({ v, i })}
                 </div>
                 <FormOutlined onClick={(e) => handleEdit(e, v, i)}></FormOutlined>
@@ -113,7 +113,8 @@
             ))}
             {moreBtn.value && (
               <Button type="link" onClick={handleMore}>
-                展开<CaretUpOutlined></CaretUpOutlined>
+                {props.moreName}
+                <CaretUpOutlined></CaretUpOutlined>
               </Button>
             )}
           </Spin>
@@ -138,7 +139,7 @@
       display: inline-flex;
       align-items: center;
 
-      .title {
+      &-title {
         margin: 0 16px;
         overflow: hidden;
         text-overflow: ellipsis;

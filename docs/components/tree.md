@@ -53,7 +53,7 @@
 
 |  事件名称  | 说明 | 回调参数 |
 |  ---- | ---- | ---- | 
-| menuClick | 树操作按钮点击触发 | `boolean` | false |
+| menuClick | 树操作按钮点击触发 | `(item) => void` |
 
 
 ### TreeNode

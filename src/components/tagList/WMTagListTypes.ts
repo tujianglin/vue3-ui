@@ -1,4 +1,4 @@
-import type { ExtractPropTypes, PropType, VNode } from 'vue';
+import type { ExtractPropTypes, PropType } from 'vue';
 
 type on = {
   add: () => void;
@@ -13,7 +13,11 @@ export const wmTagListProps = () => ({
   loading: Boolean,
   /** 添加按钮文案 */
   addName: {
-    type: String as PropType<String | VNode>,
+    type: String,
+  },
+  /** 展开按钮文案 */
+  moreName: {
+    type: String,
   },
   /** 标签列表数据 */
   list: {
