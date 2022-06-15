@@ -14,7 +14,7 @@
 
 ## 自定义插槽
 
-<demo src="./demo/tagList/slotTagList.vue"  title="自定义插槽">
+<demo src="./demo/tagList/slotsTagList.vue"  title="自定义插槽">
  <desc>最简单的用法，展示 `header` `title` `icon` 插槽的使用。</desc>
 </demo>
 

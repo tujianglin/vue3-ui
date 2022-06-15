@@ -6,10 +6,10 @@
     checkable
     :tree-data="treeData"
   >
-    <template #beforeTitle="{ item }">
+    <template #before="{ item }">
       <span style="margin-right: 10px">{{ item.key }}前</span>
     </template>
-    <template #afterTitle="{ item }">
+    <template #after="{ item }">
       <span style="margin-left: 10px">后{{ item.key }}</span>
     </template>
   </WMTree>
