@@ -137,6 +137,10 @@
     "styl",
     "postcss",
     "demoblock",
-    "extglob"
+    "extglob",
+    "VueTypeValidableDef",
+    "windicss",
+    "akar",
+    "unref"
   ]
 }

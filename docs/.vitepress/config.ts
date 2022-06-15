@@ -5,7 +5,7 @@ import sidebar from './configs/sidebar';
 
 export default defineConfig({
   lang: 'en-US',
-  title: 'tjl-ui',
+  title: 'WM-UI',
   base: '/tjl-ui/',
   lastUpdated: true,
   themeConfig: {

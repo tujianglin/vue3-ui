@@ -13,8 +13,8 @@ export default {
     {
       text: '组件',
       items: [
-        { text: 'Button 按钮', link: '/components/button' },
         { text: 'Tree 树形控件', link: '/components/tree' },
+        { text: 'TagList 标签列表', link: '/components/tagList' },
       ],
     },
   ],

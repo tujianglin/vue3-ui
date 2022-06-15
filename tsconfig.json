@@ -21,7 +21,7 @@
     "removeComments": true,
     "declaration": true,
     "outDir": "typings",
-    "types": ["vite/client", "tjl-ui"],
+    "types": ["vite/client"],
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"]

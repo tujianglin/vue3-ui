@@ -2,7 +2,7 @@
 layout: home
 
 hero:
-  name: tjl-ui
+  name: WM-UI
   text: 简单的vue3组件库.
   actions:
     - theme: brand

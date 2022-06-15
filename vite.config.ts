@@ -2,6 +2,7 @@ import type { ConfigEnv, UserConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import vueSetupExtend from 'vite-plugin-vue-setup-extend';
 import { createStyleImportPlugin } from 'vite-plugin-style-import';
+import vueJsx from '@vitejs/plugin-vue-jsx';
 import dts from 'vite-plugin-dts';
 import Delete from 'rollup-plugin-delete';
 
@@ -25,6 +26,7 @@ export default ({}: ConfigEnv): UserConfig => {
         insertTypesEntry: true,
       }),
       vue(),
+      vueJsx(),
       vueSetupExtend(),
       createStyleImportPlugin({
         libs: [

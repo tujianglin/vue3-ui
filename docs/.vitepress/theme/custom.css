@@ -21,3 +21,8 @@ p,
   --c-bg: var(--vp-c-bg);
   --vp-code-block-color: var(--vp-c-text-1);;
 }
+
+.tag-list-add {
+  display: inline-flex;
+  align-items: center;
+}

@@ -5,7 +5,14 @@
     v-model:checkedKeys="checkedKeys"
     checkable
     :tree-data="treeData"
-  />
+  >
+    <template #before="{ item }">
+      <span style="margin-right: 10px">{{ item.key }}前</span>
+    </template>
+    <template #after="{ item }">
+      <span style="margin-left: 10px">后{{ item.key }}</span>
+    </template>
+  </WMTree>
 </template>
 <script lang="tsx" setup>
   import { ref, watch } from 'vue';
