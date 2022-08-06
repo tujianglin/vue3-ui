@@ -1,6 +1,7 @@
 import { App } from 'vue';
 import { forEach } from 'lodash-es';
-import './components';
+export * from './components';
+
 // antv 主题样式引入
 import 'ant-design-vue/dist/antd.variable.min.css';
 

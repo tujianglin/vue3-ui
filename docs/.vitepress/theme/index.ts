@@ -1,10 +1,10 @@
 import DefaultTheme from 'vitepress/theme';
 import DemoBlock from 'vite-plugin-vitepress-demo/dist/demo/index.vue';
-import { createUI } from '../../../dist/ui.es';
+import { createUI } from 'tjl-ui';
 import 'vite-plugin-vitepress-demo/dist/demo/code.css';
-import '../../../dist/style.css';
+import 'tjl-ui/dist/style.css';
 import './custom.css';
-
+import { Console } from 'console';
 export default {
   enhanceApp({ app }) {
     app.use(createUI());

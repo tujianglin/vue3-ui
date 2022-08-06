@@ -7,7 +7,7 @@ hero:
   actions:
     - theme: brand
       text: 开始使用
-      link: /tjl-ui/guide/getting-started
+      link: /guide/getting-started
     - theme: alt
       text: 仓库地址
       link: https://github.com/tujianglin/tjl-ui

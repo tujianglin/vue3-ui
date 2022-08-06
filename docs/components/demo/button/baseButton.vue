@@ -1,7 +1,7 @@
 <template>
-  <div> <TButton name="111" /> </div>
+  <div> <TButton :demo="11" /> </div>
 </template>
 <script lang="tsx" setup>
-  import {} from 'vue';
+  import { TButton } from 'tjl-ui';
 </script>
 <style lang="less" scoped></style>

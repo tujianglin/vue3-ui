@@ -2,6 +2,15 @@
   --c-divider: #f0f0f0;
 }
 
+.dark {
+  --c-text: #fff;
+}
+
+.vp-doc th,
+.vp-doc td {
+  color: var(--c-text);
+}
+
 body {
   background-color: var(--vp-c-bg) !important;
 }
@@ -19,5 +28,18 @@ p,
 
 .demo-block {
   --c-bg: var(--vp-c-bg);
-  --vp-code-block-color: var(--vp-c-text-1);;
+  --vp-code-block-color: var(--vp-c-text-1);
+}
+
+.tag-list-add {
+  display: inline-flex;
+  align-items: center;
+}
+.demo-block__content {
+  overflow: hidden;
+}
+
+.ant-table table {
+  display: inline-table;
+  margin: 0;
 }

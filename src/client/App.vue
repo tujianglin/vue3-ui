@@ -1,7 +1,7 @@
 <template>
-  <div id="app">
-    <TButton name="1" :title="11" />
-  </div>
+  <div id="app"> <TButton /> </div>
 </template>
-<script lang="tsx" setup></script>
+<script lang="tsx" setup>
+  import TButton from '../components/button/TButton.vue';
+</script>
 <style lang="less" scoped></style>

@@ -20,11 +20,11 @@ const forEachComponents = (path) => {
 const genComponents = async () => {
   const path = `src/components/**/*.(vue)`;
   const template = `
-declare module "vue" {
-  export interface GlobalComponents {
-    ${forEachComponents(path).join(`\n`)}
-  }
-}`;
+ declare module "vue" {
+   export interface GlobalComponents {
+     ${forEachComponents(path).join(`\n`)}
+   }
+ }`;
   fs.appendFile(indexPath, template);
 };
 

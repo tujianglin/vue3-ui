@@ -1,6 +1,6 @@
 import { createApp } from 'vue';
 import App from './App.vue';
-import { createUI } from '../index';
-// import 'tjl-ui/dist/style.css';
+import { createUI, TButton } from '../index';
+console.log(TButton);
 
 createApp(App).use(createUI()).mount('#app');

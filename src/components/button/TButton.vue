@@ -1,17 +1,18 @@
-<template>
-  <div>
-    <Button type="primary">{{ name }}</Button>
-  </div>
-</template>
 <script lang="tsx">
-  export default {
-    name: 'TButton',
-  };
-</script>
-<script lang="tsx" setup>
+  import { defineComponent } from 'vue';
   import { Button } from 'ant-design-vue';
-  defineProps<{
-    name: string;
-  }>();
+  import { initDefaultProps } from '@/utils';
+  import { tButtonProps } from './TButtonTypes';
+  export default defineComponent({
+    name: 'TButton',
+    props: initDefaultProps(tButtonProps(), {}),
+    setup(props) {
+      return () => (
+        <div>
+          <Button type={'primary'}>{props.demo}</Button>
+        </div>
+      );
+    },
+  });
 </script>
 <style lang="less" scoped></style>
