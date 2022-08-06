@@ -8,7 +8,7 @@ export type ButtonShape = 'default' | 'circle' | 'round';
 export type ButtonHTMLType = 'submit' | 'button' | 'reset';
 
 export type LegacyButtonType = ButtonType | 'danger';
-export function convertLegacyProps(type?: LegacyButtonType): ButtonProps {
+export function convertLegacyProps(type?: LegacyButtonType): TButtonProps {
   if (type === 'danger') {
     return { danger: true };
   }
@@ -43,6 +43,6 @@ export const buttonProps = () => ({
   },
 });
 
-export type ButtonProps = Partial<ExtractPropTypes<ReturnType<typeof buttonProps>>>;
+export type TButtonProps = Partial<ExtractPropTypes<ReturnType<typeof buttonProps>>>;
 
 export default buttonProps;

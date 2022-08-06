@@ -19,6 +19,7 @@
 * 自定注册组件 ([ca92795](https://github.com/tujianglin/tjl-ui/commit/ca92795ac578b87aceb491a8cb51d864f109c774))
 * 组件注册逻辑修改 ([25036ab](https://github.com/tujianglin/tjl-ui/commit/25036ab84b84a139a99247972b3e9c17d6a7c1c4))
 * button ([eb3385f](https://github.com/tujianglin/tjl-ui/commit/eb3385f1f6924fc08bb416895c7f557a48e49983))
+* json 修改 ([c81b950](https://github.com/tujianglin/tjl-ui/commit/c81b950e0fa6e8f3f1f30e572edf8bf66d6e10a2))
 * ok ([4ae7517](https://github.com/tujianglin/tjl-ui/commit/4ae7517b6c6ed562b77cf2c03cf5a37bfe0539c9))
 * readme ([2ff79e2](https://github.com/tujianglin/tjl-ui/commit/2ff79e2f38653367524ab397600c5b6c74d1ee0b))
 * wendang ([acf28fc](https://github.com/tujianglin/tjl-ui/commit/acf28fc8a6e804899ef6acf47337a454369753b5))
