@@ -1,15 +1,23 @@
 <script lang="tsx">
-  import { defineComponent } from 'vue';
+  import { computed, defineComponent, unref } from 'vue';
   import { Button } from 'ant-design-vue';
   import { initDefaultProps } from '@/utils';
-  import { tButtonProps } from './TButtonTypes';
+  import buttonProps from './TButtonTypes';
   export default defineComponent({
     name: 'TButton',
-    props: initDefaultProps(tButtonProps(), {}),
-    setup(props) {
+    inheritAttrs: false,
+    props: initDefaultProps(buttonProps(), {}),
+    setup(props, { attrs, slots }) {
+      const getBindValue = computed(() => {
+        const propsData = {
+          ...attrs,
+          ...props,
+        };
+        return propsData;
+      });
       return () => (
         <div>
-          <Button type={'primary'}>{props.demo}</Button>
+          <Button {...unref(getBindValue)}>{slots.default && slots.default()}</Button>
         </div>
       );
     },
